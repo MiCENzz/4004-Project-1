@@ -1,0 +1,186 @@
+% This must be in the first 5 lines to tell arXiv to use pdfLaTeX, which is strongly recommended.
+\pdfoutput=1
+% In particular, the hyperref package requires pdfLaTeX in order to break URLs across lines.
+
+\documentclass[11pt]{article}
+
+% Remove the "review" option to generate the final version.
+\usepackage{ACL2023}
+\usepackage{booktabs}
+\usepackage{multirow}
+% Standard package includes
+\usepackage{times}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\usepackage{array}
+\usepackage{natbib}
+\def\keywords{\vspace{.5em}{\textit{Keywords}:\,}}
+\bibliographystyle{acl_natbib}
+
+% For proper rendering and hyphenation of words containing Latin characters (including in bib files)
+\usepackage[T1]{fontenc}
+% For Vietnamese characters
+% \usepackage[T5]{fontenc}
+% See https://www.latex-project.org/help/documentation/encguide.pdf for other character sets
+
+% This assumes your files are encoded as UTF8
+\usepackage[utf8]{inputenc}
+
+% This is not strictly necessary, and may be commented out.
+% However, it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+% This is also not strictly necessary, and may be commented out.
+% However, it will improve the aesthetics of text in
+% the typewriter font.
+\usepackage{inconsolata}
+
+
+% If the title and author information does not fit in the area allocated, uncomment the following
+%
+%\setlength\titlebox{<dim>}
+%
+% and set <dim> to something 5cm or larger.
+
+\title{4004 Project 1}
+
+% Author information can be set in various styles:
+% For several authors from the same institution:
+% \author{Author 1 \and ... \and Author n \\
+%         Address line \\ ... \\ Address line}
+% if the names do not fit well on one line use
+%         Author 1 \\ {\bf Author 2} \\ ... \\ {\bf Author n} \\
+% For authors from different institutions:
+% \author{Author 1 \\ Address line \\  ... \\ Address line
+%         \And  ... \And
+%         Author n \\ Address line \\ ... \\ Address line}
+% To start a seperate ``row'' of authors use \AND, as in
+% \author{Author 1 \\ Address line \\  ... \\ Address line
+%         \AND
+%         Author 2 \\ Address line \\ ... \\ Address line \And
+%         Author 3 \\ Address line \\ ... \\ Address line}
+
+\author{Nuoyan Cao \\
+ Columbia University \\
+  \texttt{yc4547@nyu.edu} \\\And
+  Yuzhe Cen \\
+  Columbia University \\
+  \texttt{yc4494@columbia.edu} \\\And
+  Ruiyi Hou \\
+   Columbia University \\
+  \texttt{hp2190@nyu.edu} \\ \\\And
+  Leming Li \\
+   Columbia University \\
+  \texttt{hp2190@nyu.edu} \\}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This report addresses the challenge of eliminating child care deserts across New York State by developing an optimization model to minimize the cost of building and expanding child care facilities. Using newly cleaned datasets and high-demand area classifications, we analyzed child care supply-demand deficits and established a mathematical model to support budget allocation across different regions. Our objective is to ensure adequate child care slots for children aged 0-12 years while meeting special requirements for children aged 0-5. The model incorporates constraints for distance limitations and capacity expansions. We provide insights on the model’s efficacy in cost minimization and equity in child care access.
+\end{abstract}
+\section{Introduction}
+
+The issue of child care deserts, where the demand for licensed child care far exceeds available slots, is a pressing concern for New York State. Our project addresses this challenge by optimizing budget allocation to build new child care facilities or expand existing ones. This report details the process of creating an optimization model that minimizes cost while ensuring all areas meet child care demand requirements. The work aligns with recent studies on child care shortages and policy efforts to bridge the gap in child care accessibility, particularly for children under five years of age.
+
+\section{Background}
+Child care deserts affect many regions, with an especially acute impact on low-income areas and those with high working parent percentages. Previous studies emphasize the importance of providing adequate slots for children, especially younger ones requiring more supervision. Our approach uses high-demand classification, expansion constraints, and facility capacity data to model these requirements within New York State. Key challenges include balancing cost minimization with demand satisfaction and adhering to expansion and distance constraints for new facilities.
+
+\section{Method}
+
+\subsection{Problem statement}
+Hate speech, being a complex and language-specific phenomenon, poses challenges in developing accurate and adaptable models that can handle variations in offensive language across different languages and cultures. The problem we aim to address in this study is the effective detection and classification of hate speech across multiple languages, while ensuring that the models possess robust generalization capabilities.  Our goal is to test whether existing LLMs could effectively classify hate speech in multiple languages that are not only effective in identifying hate speech in the languages they were trained on, but also capable of generalizing to unseen languages. We will also compare the performance of models based on different pre-trained models, and assess the generalization abilities of them.
+
+\subsection{Results}
+To address the problem of effective hate speech detection and classification across multiple languages with strong generalization capabilities, we propose the following approaches:
+\begin{enumerate}
+    \item Multilingual Models: We utilize mBERT and XLM-R, state-of-the-art multilingual pre-trained models, as our base models for hate speech classification.
+    \item Fine-tuning with LoRA: To speed up our experiments because of the limited GPUs available, we applied LoRA (Low Rand Adaption) to reduce training parameters and we did ablation experiments to show that it does not hurt performance by a lot according to the paper \cite{hu2021lora}.
+    \item Cross-lingual Evaluation: We evaluate our models on the training languages (Chinese, English, and Spanish) and three unseen languages (Portuguese, Italian, and Turkish) to assess their generalization capabilities. In addition to the test set used in our study, we also test on a set of manually selected examples of hate speech, exhibiting various styles and forms, for human evaluation.
+    \item Analysis: We conduct an analysis of the results to investigate the factors contributing to the models' performance, gain insights into their strengths and weaknesses, and identify areas for future improvements.
+\end{enumerate}
+
+\section{}
+\begin{table*}[h]
+\centering
+\caption{Comparison of the model performance trained with all three languages}
+\label{tab:model_performance}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccccc}
+\toprule
+\multirow{2}{*}{Language} & \multicolumn{3}{c}{mBert} & \multicolumn{3}{c}{XLM-R} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+& Prec. & Recall & F1 & Prec. & Recall & F1 \\
+\midrule
+English       & 0.851 & 0.835 & 0.853 & 0.897 & 0.842 & 0.869 \\
+Chinese       & 0.839 & 0.875 & 0.857 & 0.840 & 0.902 & 0.870 \\
+Spanish      & 0.787 & 0.798 & 0.790 & 0.789 & 0.788 & 0.788 \\
+\addlinespace
+\specialrule{1pt}{0pt}{0pt}
+\addlinespace
+Portuguese      & 0.5 & 0.365 & 0.422 & 0.510    & 0.4     & 0.448     \\
+Italian  & 0.512 & 0.573 & 0.541 & 0.521     & 0.618  & 0.566   \\
+Turkish  & 0.267 & 0.473 & 0.341 & 0.466     & 0.296     & 0.362    \\
+\bottomrule
+\end{tabular*}
+\end{table*}
+\subsection{Models and Datasets}
+We referred to  45K hate speech examples with different languages from published paper including Chinese from COLD \cite{deng-etal-2022-cold}, English from Hatexplain \cite{toraman2022large,mathew2020hatexplain}, and Spanish from SemEval-201 and MEX-A3T\cite{basile-etal-2019-semeval,alvarez2018overview}. Each entry in the dataset is labeled as either 0 (not hate speech) or 1 (hate speech). We preprocessed the dataset by removing duplicates, user IDs and URLs. We split the dataset into training, validation, and test sets, with a ratio of 80:10:10. We fine-tuned mBERT and XLM-R models with the LoRA implemented for efficient fine-tuning. For each model, we evaluated their accuracy, precision, recall, and F1 scores on the language we trained on, as well as on three languages we did not train on: Portuguese, Italian, and Turkish \cite{wajid_hassan_moosa_najiba_2022}.
+
+We build model based on the mBert and XLM-R model from hugging face with minor modifications. We train our model on 1 n1s8-v100 GPU for 3 epochs. The batch size, learning rate, and weight decay are set to 16, 9e-3, and 0.02, respectively. 
+\subsection{Experiments Setup}
+\subsubsection{Experiment 1}
+We will first fine-tune the model in Chinese, English and Spanish respectively, and evaluate the performance of the XLM-R/mBERT model by assessing its accuracy on the test set of the same language. The baseline is the performance of our XLM-R/mBERT model that is fine-tuned on the same language it evaluates on. Then we will fine-tune the model on the mixture of Chinese, English, and Spanish and evaluate its performance on Chinese, English, and Spanish separately and also evaluate its zero-shot generalization ability on some other common languages (Portuguese, Italian, and Turkish) which not included in the training.
+\subsubsection{Experiment 2}
+We will conduct an error analysis to identify the limitations of our model in detecting hate speech across different languages and contexts such as when facing implicit hate speeches or internet slang. Discover why cross-lingual transfer may or may not work.
+\subsection{Results}
+\subsubsection{Mono-language model performance}
+To start with, we trained separate models with mono-language training datasets and test their performances on test sets of the same language. Below (Table 2) is our results which show LLM's ability to detect hate speech if only one language is present.
+\begin{table}[ht]
+\centering
+\caption{separate models trained on mono-language}
+\label{tab:model_performance}
+\begin{tabular}{l>{\centering\arraybackslash}p{0.6cm}>{\centering\arraybackslash}p{0.6cm}>{\centering\arraybackslash}p{0.6cm}>{\centering\arraybackslash}p{0.6cm}>{\centering\arraybackslash}p{0.6cm}>{\centering\arraybackslash}p{0.6cm}}
+\toprule
+\multirow{2}{*}{Lang} & \multicolumn{3}{c}{mBert} & \multicolumn{3}{c}{XLM-R} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+& Prec. & Recall & F1 & Prec. & Recall & F1 \\
+\midrule
+English & 0.861 & 0.834 & 0.847 & 0.902 & 0.841 & 0.871 \\
+Chinese & 0.842 & 0.854 & 0.848 & 0.843 & 0.880 & 0.861 \\
+Spanish & 0.766 & 0.778 & 0.772 & 0.832 & 0.810 & 0.821 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Mixed-language model performance}
+From the result showing in Table 1, We found that both XLM-R and mBERT have promising results on Chinese and English, with F1 scores above 0.85. However, the performance of both models on Spanish was relatively poor, with F1 scores below 0.8, likely due to data scarcity. We also found that the models have pretty bad performance on the language that not trained on. mBERT and XLM-R showed an average F1 score of 0.43 and 0.45 respectively. 
+
+\subsection{Analysis}
+
+We arrived at several key conclusions about the effectiveness of our model at detecting hate speech in a multilingual context. Firstly, our model appears to be highly effective at identifying straightforward hate speech, which frequently includes the use of offensive language and racial slurs. This is an important finding, as straightforward hate speech can be particularly harmful and damaging, and thus being able to identify it quickly and accurately is crucial.
+
+Additionally, our analysis of manually selected text outside the test data set in other languages suggests that our model exhibits a degree of zero-shot ability by accurately identifying offensive speech in languages it has not been explicitly trained on. This is a promising finding that demonstrates the potential of our model for use in multilingual settings.
+
+\subsubsection{Error Analysis}
+We observed that our model did not perform as well on our test set of language that it was not trained on, which primarily consists of colloquial and internet slang language. This is a significant limitation of our model, as colloquial and internet slang are frequently used in online environments where hate speech is prevalent. It is possible that the semantic meaning of the internet slang language used in the test set was not adequately captured in the training data, due to the more diverse contexts present in online environments.
+
+Furthermore, our analysis revealed that implicit hate speech, which are not overtly direct, also resulted in low model performance. Implicit hate speech is often more challenging to detect and requires a deeper understanding of general knowledge, which may be difficult for a machine learning model to fully capture. This highlights an important area for future research, as identifying and effectively detecting implicit hate speech could significantly improve the effectiveness of hate speech detection models.
+
+Overall, our findings suggest that while our model is effective at detecting straightforward hate speech and exhibits some degree of zero-shot ability, it still has significant limitations when it comes to detecting more nuanced forms of hate speech, such as colloquial and implicit hate speech. These limitations underscore the importance of ongoing research and development in this area, as well as the need for continuous efforts to improve the quality and diversity of training data for machine learning models used in hate speech detection.
+
+\section{Conclusion}
+In this study, we investigated the performance of fine-tuned mBERT and XLM-R models for hate speech classification in a multilingual context. Our trained multilingual models possessed similar performances in detecting hate speech of the language as the trained mono-lingual model in evaluating that language. Our results indicate that both models show promising results for Chinese and English, but relatively poor performance for Spanish due to a lack of training data. Interestingly, we found that the models were able to learn to classify hate speech in other languages, even though they were only trained on straightforward hate speech. These findings suggest that fine-tuned mBERT and XLM-R models can be effective for classifying hate speech in multiple languages, but their performance may be affected by the availability of training data in each language. Further research is needed to explore the potential of these models for hate speech classification in other languages and to investigate the effectiveness of different fine-tuning techniques.
+% Entries for the entire Anthology, followed by custom entries
+
+\vspace{12pt}
+\noindent\textbf{Contribution Statement:} All authors contributed equally to this work. We required access to GPUs for model training and evaluation, multilingual hate speech datasets, and software tools like the Transformers library.
+
+
+
+\nocite{*}\bibliography{reference.bib}
+
+
+
+
+\end{document}
